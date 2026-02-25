@@ -1,0 +1,554 @@
+<decoder name="unifi-cef">
+  <prematch type="pcre2">^CEF:\d+\|Ubiquiti\|UniFi</prematch>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">UNIFIcategory=(\S+)</regex>
+  <order>unifi_category</order>
+  <accumulate/>
+</decoder>
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">^CEF:\d+\|[^|]+\|[^|]+\|[^|]+\|([^|]+)\|([^|]+)\|(\d+)\|</regex>
+  <order>unifi_id, unifi_event_name, unifi_severity</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">UNIFIsubCategory=(\S+)</regex>
+  <order>unifi_subcategory</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">UNIFIhost=(.*?)(?=\s+UNIFI|\s+src=|\s+msg=|$)</regex>
+  <order>unifi_host</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">UNIFIaccessMethod=(\S+)</regex>
+  <order>unifi_access_method</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">UNIFIadmin=(\S+)</regex>
+  <order>unifi_admin</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\ssrc=(\S+)</regex>
+  <order>srcip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\smsg=(.*)</regex>
+  <order>msg</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bcnt=(\d+)</regex>
+  <order>unifi_cnt</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bdeviceOutboundInterface=(\S+)</regex>
+  <order>deviceOutboundInterface</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\breason=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>reason</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bsuser=(\S+)</regex>
+  <order>suser</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcta=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_cta</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdnsServerIp=(\S+)</regex>
+  <order>unifi_dns_server_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIclientMac=(\S+)</regex>
+  <order>unifi_client_mac</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIclientIP=(\S+)</regex>
+  <order>unifi_client_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIclientIp=(\S+)</regex>
+  <order>unifi_client_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIclientHostname=(\S+)</regex>
+  <order>unifi_client_hostname</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIclientAlias=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_client_alias</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceMac=(\S+)</regex>
+  <order>unifi_device_mac</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceIp=(\S+)</regex>
+  <order>unifi_device_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceName=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_device_name</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceModel=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_device_model</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdevicePort=(\S+)</regex>
+  <order>unifi_device_port</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdevicePortList=(\S+)</regex>
+  <order>unifi_device_port_list</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceLagPorts=(\S+)</regex>
+  <order>unifi_device_lag_ports</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIfanId=(\S+)</regex>
+  <order>unifi_fan_id</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceUpdateUrl=(\S+)</regex>
+  <order>unifi_device_update_url</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceUpdateVersion=(\S+)</regex>
+  <order>unifi_device_update_version</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdevicePriorVersion=(\S+)</regex>
+  <order>unifi_device_prior_version</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIbssid=(\S+)</regex>
+  <order>unifi_bssid</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFI2GHzChannel=(\d+)</regex>
+  <order>unifi_2ghz_channel</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFI5GHzChannel=(\d+)</regex>
+  <order>unifi_5ghz_channel</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFI6GHzChannel=(\d+)</regex>
+  <order>unifi_6ghz_channel</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcurrentChannel=(\d+)</regex>
+  <order>unifi_current_channel</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIWiFiRssi=(-\d+)</regex>
+  <order>unifi_wifi_rssi</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdetectedByApAndSignalStrength=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_detected_by_ap_signal</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdetectedByQty=(\d+)</regex>
+  <order>unifi_detected_by_qty</order>
+  <accumulate/>
+</decoder>
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIattemptedConnectionMethod=(\S+)</regex>
+  <order>unifi_attempted_conn_method</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIattemptedConnectionSource=(\S+)</regex>
+  <order>unifi_attempted_conn_source</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIauthMethod=(\S+)</regex>
+  <order>unifi_auth_method</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcertName=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_cert_name</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcertExpiryDate=(\S+)</regex>
+  <order>unifi_cert_expiry</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIbackupPowerDevice=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_backup_power_device</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdevicePowerAvailability=(\S+)</regex>
+  <order>unifi_device_power_avail</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdevicePowerRequirement=(\S+)</regex>
+  <order>unifi_device_power_req</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdevicePowerUsage=(\S+)</regex>
+  <order>unifi_device_power_usage</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceRequiredPower=(\S+)</regex>
+  <order>unifi_device_required_power</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIdeviceSuppliedPower=(\S+)</regex>
+  <order>unifi_device_supplied_power</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIconnectedToDeviceIp=(\S+)</regex>
+  <order>unifi_connected_to_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIconnectedToDeviceMac=(\S+)</regex>
+  <order>unifi_connected_to_mac</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIconnectedToDeviceModel=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_connected_to_model</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIconnectedToDeviceName=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_connected_to_name</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIconnectedToDevicePort=(\S+)</regex>
+  <order>unifi_connected_to_port</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIconnectedToDeviceVersion=(\S+)</regex>
+  <order>unifi_connected_to_version</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcellularCarrier=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_cellular_carrier</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcellularLimit=(\S+)</regex>
+  <order>unifi_cellular_limit</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcellularSim=(\S+)</regex>
+  <order>unifi_cellular_sim</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcellularUsage=(\S+)</regex>
+  <order>unifi_cellular_usage</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIfailoverCellularCarrier=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_failover_cellular_carrier</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIfailoverWanId=(\S+)</regex>
+  <order>unifi_failover_wan_id</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIfailoverWanIp=(\S+)</regex>
+  <order>unifi_failover_wan_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIfailoverWanIsp=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_failover_wan_isp</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIfailoverWanName=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_failover_wan_name</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIfailoverWanPort=(\S+)</regex>
+  <order>unifi_failover_wan_port</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIfailoverWanSubnet=(\S+)</regex>
+  <order>unifi_failover_wan_subnet</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIlastConnectedToDeviceIp=(\S+)</regex>
+  <order>unifi_last_connected_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIlastConnectedToDeviceMac=(\S+)</regex>
+  <order>unifi_last_connected_mac</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIlastConnectedToWiFiBand=(\S+)</regex>
+  <order>unifi_last_connected_band</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIlastConnectedToWiFiChannel=(\d+)</regex>
+  <order>unifi_last_connected_channel</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIlastConnectedToWiFiChannelWidth=(\S+)</regex>
+  <order>unifi_last_connected_channel_width</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIlastConnectedToWiFiRssi=(-\d+)</regex>
+  <order>unifi_last_connected_rssi</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIconflictIp=(\S+)</regex>
+  <order>unifi_conflict_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIconflictList=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_conflict_list</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcurrentRootBridgeDeviceIp=(\S+)</regex>
+  <order>unifi_root_bridge_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFIcurrentRootBridgeDeviceMac=(\S+)</regex>
+  <order>unifi_root_bridge_mac</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFImclagBottomSwitchIp=(\S+)</regex>
+  <order>unifi_mclag_bottom_ip</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFImclagBottomSwitchMac=(\S+)</regex>
+  <order>unifi_mclag_bottom_mac</order>
+  <accumulate/>
+</decoder>
+
+<decoder name="unifi-cef-child">
+  <parent>unifi-cef</parent>
+  <regex type="pcre2">\bUNIFImclagGroup=(.*?)(?=\s+[a-zA-Z0-9_]+=|\s*$)</regex>
+  <order>unifi_mclag_group</order>
+  <accumulate/>
+</decoder>
